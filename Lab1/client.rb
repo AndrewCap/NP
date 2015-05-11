@@ -11,6 +11,7 @@ loop do
 	while data = gets
 		server.puts data
 		puts server.gets
+		exit if data.chomp == "Close"
 	end
 end
 
