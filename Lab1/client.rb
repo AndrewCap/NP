@@ -2,16 +2,17 @@ require 'socket'
 
 #u!$@chi$@chi!b00mb00m
 
-server = Socket.new :INET, :STREAM
-p server.bind Addrinfo.tcp('127.0.0.1', '4322')
+host = "127.0.0.1"
+port = 4321
 
-server.listen(5)
+server = TCPSocket.open(host, port)
 
 loop do
-	client, client_addr = server.accept
-	while data = client.gets
-		puts data
-		client.send("astrsta")
+	while data = gets
+		server.puts data
+		puts server.gets
 	end
-	client.close
 end
+
+
+client.close
