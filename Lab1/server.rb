@@ -1,16 +1,25 @@
 require 'socket'
 
+def process_command command, client
+	puts command
+	case command
+		when "Time"
+			 client.write "#{Time.now}\n"
+		else
+			client.write "Can you elaborate on that?\n"
+	end
+end
 
 
-server = Socket.new :INET, :STREAM
-server.bind Addrinfo.tcp('127.0.0.1', '4322')
 
-server.listen(5)
+server = TCPServer.new "127.0.0.1", 4321
 
 loop do
-	client, client_addr = server.accept
-	while data = client.gets
-		puts data
-	end
-	client.close
+	Thread.start(server.accept) do |client|  
+	    print(client, " is accepted\n")  
+	    while data = client.gets
+	    	abort("Hastalavista command") if data.chomp == "Hastalavista"
+			process_command data.chomp, client
+		end
+  	end
 end
