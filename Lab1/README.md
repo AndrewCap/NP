@@ -14,6 +14,7 @@
 ## Work
 The files are `server.rb` and `client.rb`
 The initiation process is the following: run `ruby server.rb` and after that `ruby client.rb`. The commands are introduced only from client part (they're described below).
+A feature implemeted is multiple clients serving, for which I used ruby library named `Thread`.
 
 ## Implemented commands:
 	- `Time` 	- returns current server time to client
