@@ -32,8 +32,8 @@ coooCCO8\@88OO8O888Oo:::... ..  :cO8Oc. . .....  :.  .:ccCoooooccoooocccccooooCC
 
 options = { port: 3000, 
             poolsize: 5000, 
-            requests: 10000,
-            threads: 5000 }
+            requests: 1000,
+            threads: 2000 }
 OptionParser.new do |opts|
   opts.banner = "Usage: slowloris.rb [options]"
 
