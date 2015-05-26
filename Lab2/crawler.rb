@@ -1,15 +1,14 @@
 require 'socket'
 
- 
 host = 'info.railean.net'
-port = 80                 
-path = "/index.htm"
+port = 80
 
-request = "GET #{path} HTTP/1.0\r\n\r\n"
+s = TCPSocket.open host, port
+s.puts "GET / HTTP/1.1\r\n"
+s.puts "\r\n"
 
-socket = TCPSocket.open(host,port)
-socket.print(request)
-response = socket.read
+while line = s.gets
+  puts line.chop
+end
 
-headers,body = response.split("\r\n\r\n", 2) 
-print body    
+s.close
