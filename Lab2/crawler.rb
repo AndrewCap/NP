@@ -3,10 +3,6 @@ require 'socket'
 host = 'torrentsmd.com'
 port = 80
 
-s = TCPSocket.open host, port
-s.puts "GET / HTTP/1.0\r\n"
-s.puts "\r\n"
-
 content_type = Hash.new
 content_type = {
   'text/html' => 'html',
@@ -17,6 +13,15 @@ content_type = {
 
 filetype = ''
 
+to_donwnload = []
+
+
+s = TCPSocket.open host, port
+s.puts "GET / HTTP/1.0\r\n"
+s.puts "\r\n"
+
+
+
 8.times  do	
 	line = s.gets
   puts line.chop
@@ -25,10 +30,11 @@ filetype = ''
   end
 end
 
-page = File.open("index.#{filetype}", 'r+')
+page = File.open("index.#{filetype}", 'w')
 
-while line = s.gets 
-	page.puts(line.chop)
+while line = s.gets
+	page.puts line.chop
+	puts line.split
 end
 
 page.close
