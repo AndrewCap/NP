@@ -21,7 +21,6 @@ s.puts "GET / HTTP/1.0\r\n"
 s.puts "\r\n"
 
 
-
 8.times  do	
 	line = s.gets
   puts line.chop
